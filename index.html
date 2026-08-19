@@ -26,6 +26,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .logo {
@@ -33,16 +35,21 @@
       font-weight: bold;
     }
 
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
     nav a {
       color: white;
       text-decoration: none;
-      margin-left: 18px;
       font-size: 15px;
     }
 
     .hero {
       text-align: center;
-      padding: 70px 20px;
+      padding: 65px 20px;
       background: white;
     }
 
@@ -55,19 +62,24 @@
     .hero p {
       font-size: 18px;
       color: #666;
-      margin-bottom: 25px;
+      margin-bottom: 12px;
     }
 
     .btn {
       display: inline-block;
       background: #6366f1;
       color: white;
-      padding: 13px 25px;
+      padding: 12px 20px;
       border-radius: 8px;
       text-decoration: none;
       border: none;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15px;
+      margin-top: 8px;
+    }
+
+    .btn:hover {
+      background: #4f46e5;
     }
 
     .section {
@@ -78,7 +90,7 @@
 
     .section h2 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       font-size: 30px;
     }
 
@@ -91,14 +103,14 @@
     .card {
       background: white;
       padding: 25px;
-      border-radius: 12px;
+      border-radius: 14px;
       text-align: center;
       box-shadow: 0 3px 12px rgba(0,0,0,0.08);
     }
 
-    .card .icon {
+    .icon {
       font-size: 40px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .card h3 {
@@ -107,7 +119,78 @@
 
     .card p {
       color: #666;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 650px;
+      margin: 0 auto 18px;
+      display: block;
+      padding: 14px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .search-box:focus {
+      border-color: #6366f1;
+    }
+
+    .filters {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .filter-btn {
+      border: none;
+      background: #e0e7ff;
+      color: #3730a3;
+      padding: 9px 15px;
+      margin: 4px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: #6366f1;
+      color: white;
+    }
+
+    .paper-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .paper {
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    }
+
+    .paper h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+      word-break: break-word;
+    }
+
+    .paper small {
+      color: #777;
+      display: block;
+      margin-bottom: 8px;
+      word-break: break-word;
+    }
+
+    .status {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 25px;
+      color: #666;
+      background: white;
+      border-radius: 12px;
     }
 
     footer {
@@ -121,15 +204,19 @@
     @media (max-width: 600px) {
       header {
         flex-direction: column;
-        gap: 12px;
+        text-align: center;
       }
 
       .hero h1 {
         font-size: 32px;
       }
 
-      nav a {
-        margin: 0 6px;
+      .hero {
+        padding: 45px 15px;
+      }
+
+      .section {
+        padding: 35px 15px;
       }
     }
   </style>
@@ -137,176 +224,539 @@
 
 <body>
 
-  <header>
-    <div class="logo">📚 PaperDost</div>
+<header>
+  <div class="logo">📚 PaperDost</div>
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#subjects">Subjects</a>
-      <a href="#papers">Papers</a>
-      <a href="#ai">AI Doubt</a>
-    </nav>
-  </header>
-
-
-  <section class="hero" id="home">
-    <h1>📚 PaperDost</h1>
-
-    <p>Boards ka Best Friend</p>
-
-    <p>
-      Previous Year Papers, Subjects aur AI Doubt Help
-      ek hi jagah.
-    </p>
-
-    <a href="#subjects" class="btn">
-      Start Learning
-    </a>
-  </section>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#subjects">Subjects</a>
+    <a href="#papers">Papers</a>
+    <a href="#ai">AI Doubt</a>
+  </nav>
+</header>
 
 
-  <section class="section" id="subjects">
+<section class="hero" id="home">
+  <h1>📚 PaperDost</h1>
 
-    <h2>📖 Subjects</h2>
+  <p><strong>Boards ka Best Friend</strong></p>
 
-    <div class="cards">
+  <p>
+    Previous Year Papers, Subjects aur AI Doubt Help
+    ek hi jagah.
+  </p>
 
-      <div class="card">
-        <div class="icon">🔬</div>
-        <h3>Science</h3>
-        <p>Science ke important topics aur papers.</p>
-        <button class="btn" onclick="openSubject('Science')">
-          Open
-        </button>
-      </div>
-
-      <div class="card">
-        <div class="icon">📐</div>
-        <h3>Mathematics</h3>
-        <p>Maths ke questions aur previous papers.</p>
-        <button class="btn" onclick="openSubject('Mathematics')">
-          Open
-        </button>
-      </div>
-
-      <div class="card">
-        <div class="icon">📚</div>
-        <h3>English</h3>
-        <p>English study material.</p>
-        <button class="btn" onclick="openSubject('English')">
-          Open
-        </button>
-      </div>
-
-      <div class="card">
-        <div class="icon">🌐</div>
-        <h3>Hindi</h3>
-        <p>Hindi ke study resources.</p>
-        <button class="btn" onclick="openSubject('Hindi')">
-          Open
-        </button>
-      </div>
-
-    </div>
-  </section>
+  <a href="#subjects" class="btn">
+    Start Learning
+  </a>
+</section>
 
 
-  <section class="section" id="papers">
+<section class="section" id="subjects">
 
-    <h2>📄 Previous Year Papers</h2>
+  <h2>📖 Subjects</h2>
 
-    <div class="cards">
-
-      <div class="card">
-        <div class="icon">📝</div>
-        <h3>Class 10</h3>
-        <p>Class 10 ke previous year papers.</p>
-        <button class="btn" onclick="showMessage('Class 10 Papers')">
-          View Papers
-        </button>
-      </div>
-
-      <div class="card">
-        <div class="icon">📝</div>
-        <h3>Class 12</h3>
-        <p>Class 12 ke previous year papers.</p>
-        <button class="btn" onclick="showMessage('Class 12 Papers')">
-          View Papers
-        </button>
-      </div>
-
-    </div>
-  </section>
-
-
-  <section class="section" id="ai">
-
-    <h2>🤖 AI Doubt Help</h2>
+  <div class="cards">
 
     <div class="card">
-
-      <p>
-        Kisi bhi question ke baare mein doubt hai?
-      </p>
-
-      <button class="btn" onclick="askAI()">
-        Ask AI
+      <div class="icon">🔬</div>
+      <h3>Science</h3>
+      <p>Science ke saare available papers.</p>
+      <button class="btn" onclick="showSubject('Science')">
+        Papers Dekho
       </button>
-
     </div>
 
-  </section>
+    <div class="card">
+      <div class="icon">📐</div>
+      <h3>Mathematics</h3>
+      <p>Maths ke saare available papers.</p>
+      <button class="btn" onclick="showSubject('Mathematics')">
+        Papers Dekho
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="icon">📚</div>
+      <h3>English</h3>
+      <p>English ke saare available papers.</p>
+      <button class="btn" onclick="showSubject('English')">
+        Papers Dekho
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="icon">🌐</div>
+      <h3>Hindi</h3>
+      <p>Hindi ke saare available papers.</p>
+      <button class="btn" onclick="showSubject('Hindi')">
+        Papers Dekho
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="icon">🌍</div>
+      <h3>Social Science</h3>
+      <p>SST ke saare available papers.</p>
+      <button class="btn" onclick="showSubject('Social Science')">
+        Papers Dekho
+      </button>
+    </div>
+
+  </div>
+
+</section>
 
 
-  <footer>
-    <p>© 2026 PaperDost</p>
-    <p>Boards ka Best Friend 📚</p>
-  </footer>
+<section class="section" id="papers">
+
+  <h2>📄 Previous Year Papers</h2>
+
+  <input
+    type="text"
+    id="search"
+    class="search-box"
+    placeholder="🔎 Paper ka naam search karo..."
+    oninput="searchPapers()"
+  >
+
+  <div class="filters">
+
+    <button class="filter-btn active" onclick="showAll(this)">
+      All
+    </button>
+
+    <button class="filter-btn" onclick="showSubject('Science', this)">
+      Science
+    </button>
+
+    <button class="filter-btn" onclick="showSubject('Mathematics', this)">
+      Mathematics
+    </button>
+
+    <button class="filter-btn" onclick="showSubject('English', this)">
+      English
+    </button>
+
+    <button class="filter-btn" onclick="showSubject('Hindi', this)">
+      Hindi
+    </button>
+
+    <button class="filter-btn" onclick="showSubject('Social Science', this)">
+      Social Science
+    </button>
+
+  </div>
+
+  <div id="paperList" class="paper-list">
+    <div class="status">
+      ⏳ Papers load ho rahe hain...
+    </div>
+  </div>
+
+</section>
 
 
-  <script>
+<section class="section" id="ai">
 
-    function openSubject(subject) {
-    const pages = {
-        "Science": "science.html",
-        "Mathematics": "mathematics.html",
-        "English": "english.html",
-        "Hindi": "hindi.html",
-        "Social Science": "social-science.html"
-    };
+  <h2>🤖 AI Doubt Help</h2>
 
-    if (pages[subject]) {
-        window.location.href = pages[subject];
-    } else {
-        alert(subject + " ka section jaldi add kiya jayega!");
+  <div class="card">
+
+    <div class="icon">🤖</div>
+
+    <p>
+      Kisi question mein doubt hai?
+    </p>
+
+    <button class="btn" onclick="askAI()">
+      Ask AI
+    </button>
+
+  </div>
+
+</section>
+
+
+<footer>
+  <p>© 2026 PaperDost</p>
+  <p>Boards ka Best Friend 📚</p>
+</footer>
+
+
+<script>
+
+/*
+========================================
+PAPERDOST SETTINGS
+========================================
+*/
+
+const GITHUB_OWNER = "adarshyadav894870-arch";
+const GITHUB_REPO = "Paper-Dost";
+const GITHUB_BRANCH = "main";
+
+const GITHUB_TREE_API =
+  `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees/${GITHUB_BRANCH}?recursive=1`;
+
+const WEBSITE_URL =
+  `https://${GITHUB_OWNER}.github.io/${GITHUB_REPO}/`;
+
+
+let allPapers = [];
+let currentSubject = "All";
+
+
+/*
+========================================
+GITHUB SE REPOSITORY KI SAARI PDF
+AUTOMATICALLY DHUNDHNA
+========================================
+*/
+
+async function loadPapers() {
+
+  const paperList = document.getElementById("paperList");
+
+  paperList.innerHTML = `
+    <div class="status">
+      ⏳ Papers load ho rahe hain...
+    </div>
+  `;
+
+  try {
+
+    const response = await fetch(GITHUB_TREE_API);
+
+    if (!response.ok) {
+      throw new Error("GitHub API error");
     }
+
+    const data = await response.json();
+
+    if (!data.tree) {
+      throw new Error("Files nahi mili");
     }
-    
-      
-    
-        
-    
-    
-      
-  
 
-    f
-      function showMessage(section) {
-    if (section === "Previous Year Papers") {
-        window.location.href = "previous-papers.html";
-    } else {
-        alert(section + " section jaldi available hoga!");
-    }
-      }
-    
+    allPapers = data.tree.filter(file =>
+      file.type === "blob" &&
+      file.path.toLowerCase().endsWith(".pdf")
+    );
 
-    function askAI() {
-    window.location.href = "ai.html";
-              }
-      
-    
+    displayPapers(allPapers);
 
-  </script>
+  } catch (error) {
+
+    console.error(error);
+
+    paperList.innerHTML = `
+      <div class="status">
+        ❌ Papers load nahi ho pa rahe hain.<br><br>
+        Website ko refresh karke dobara try karo.
+      </div>
+    `;
+
+  }
+
+}
+
+
+/*
+========================================
+PDF KA SUBJECT PEHCHANNA
+========================================
+*/
+
+function belongsToSubject(path, subject) {
+
+  const name = path.toLowerCase();
+
+  if (subject === "Mathematics") {
+    return (
+      name.includes("math") ||
+      name.includes("mathematics") ||
+      name.includes("maths")
+    );
+  }
+
+  if (subject === "Science") {
+    return (
+      name.includes("science") ||
+      name.includes("sci")
+    );
+  }
+
+  if (subject === "English") {
+    return name.includes("english");
+  }
+
+  if (subject === "Hindi") {
+    return name.includes("hindi");
+  }
+
+  if (subject === "Social Science") {
+    return (
+      name.includes("social") ||
+      name.includes("sst")
+    );
+  }
+
+  return true;
+}
+
+
+/*
+========================================
+PAPER KA SUBJECT NAME
+========================================
+*/
+
+function getSubjectName(path) {
+
+  if (belongsToSubject(path, "Mathematics")) {
+    return "Mathematics";
+  }
+
+  if (belongsToSubject(path, "Science")) {
+    return "Science";
+  }
+
+  if (belongsToSubject(path, "English")) {
+    return "English";
+  }
+
+  if (belongsToSubject(path, "Hindi")) {
+    return "Hindi";
+  }
+
+  if (belongsToSubject(path, "Social Science")) {
+    return "Social Science";
+  }
+
+  return "Other";
+}
+
+
+/*
+========================================
+PAPER KA SAFE DISPLAY NAME
+========================================
+*/
+
+function getFileName(path) {
+
+  const parts = path.split("/");
+
+  return parts[parts.length - 1];
+}
+
+
+/*
+========================================
+PAPER URL BANANA
+========================================
+*/
+
+function getPaperURL(path) {
+
+  const encodedPath = path
+    .split("/")
+    .map(part => encodeURIComponent(part))
+    .join("/");
+
+  return WEBSITE_URL + encodedPath;
+}
+
+
+/*
+========================================
+PAPERS DISPLAY KARNA
+========================================
+*/
+
+function displayPapers(papers) {
+
+  const paperList = document.getElementById("paperList");
+
+  if (!papers || papers.length === 0) {
+
+    paperList.innerHTML = `
+      <div class="status">
+        📄 Is category mein abhi koi paper nahi mila.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  paperList.innerHTML = papers.map(file => {
+
+    const fileName = getFileName(file.path);
+    const subject = getSubjectName(file.path);
+    const pdfURL = getPaperURL(file.path);
+
+    return `
+      <div class="paper">
+
+        <h3>📄 ${escapeHTML(fileName)}</h3>
+
+        <small>
+          📚 ${escapeHTML(subject)}
+          <br>
+          📁 ${escapeHTML(file.path)}
+        </small>
+
+        <a
+          class="btn"
+          href="${pdfURL}"
+          target="_blank"
+          rel="noopener"
+        >
+          📖 Paper खोलें
+        </a>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/*
+========================================
+SUBJECT FILTER
+========================================
+*/
+
+function showSubject(subject, button) {
+
+  currentSubject = subject;
+
+  const filtered = allPapers.filter(file =>
+    belongsToSubject(file.path, subject)
+  );
+
+  displayPapers(filtered);
+
+  document.getElementById("papers").scrollIntoView({
+    behavior: "smooth"
+  });
+
+
+  document.querySelectorAll(".filter-btn")
+    .forEach(btn => btn.classList.remove("active"));
+
+  if (button) {
+    button.classList.add("active");
+  }
+}
+
+
+/*
+========================================
+ALL PAPERS
+========================================
+*/
+
+function showAll(button) {
+
+  currentSubject = "All";
+
+  displayPapers(allPapers);
+
+  document.querySelectorAll(".filter-btn")
+    .forEach(btn => btn.classList.remove("active"));
+
+  if (button) {
+    button.classList.add("active");
+  }
+}
+
+
+/*
+========================================
+SEARCH
+========================================
+*/
+
+function searchPapers() {
+
+  const query =
+    document.getElementById("search").value
+      .toLowerCase()
+      .trim();
+
+
+  let papers = allPapers;
+
+
+  if (currentSubject !== "All") {
+
+    papers = papers.filter(file =>
+      belongsToSubject(file.path, currentSubject)
+    );
+
+  }
+
+
+  if (query) {
+
+    papers = papers.filter(file =>
+      file.path.toLowerCase().includes(query)
+    );
+
+  }
+
+
+  displayPapers(papers);
+}
+
+
+/*
+========================================
+AI BUTTON
+========================================
+*/
+
+function askAI() {
+
+  window.open(
+    "https://chatgpt.com/",
+    "_blank"
+  );
+
+}
+
+
+/*
+========================================
+HTML SECURITY
+========================================
+*/
+
+function escapeHTML(text) {
+
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/*
+========================================
+WEBSITE START
+========================================
+*/
+
+loadPapers();
+
+</script>
 
 </body>
-  </html>
+                       </html>
