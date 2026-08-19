@@ -267,16 +267,44 @@
   <script>
 
     function openSubject(subject) {
-      alert(subject + " section jaldi add kiya jayega!");
-    }
+    const pages = {
+        "Science": "science.html",
+        "Mathematics": "mathematics.html",
+        "English": "english.html",
+        "Hindi": "hindi.html",
+        "Social Science": "social-science.html"
+    };
 
-    function showMessage(section) {
-      alert(section + " jaldi available honge!");
+    if (pages[subject]) {
+        window.location.href = pages[subject];
+    } else {
+        alert(subject + " ka section jaldi add kiya jayega!");
     }
+    }
+    
+      
+    
+        
+    
+    
+      
+  
+
+    f
+      function showMessage(section) {
+    if (section === "Previous Year Papers") {
+        window.location.href = "previous-papers.html";
+    } else {
+        alert(section + " section jaldi available hoga!");
+    }
+      }
+    
 
     function askAI() {
-      alert("AI Doubt feature next step mein add karenge!");
-    }
+    window.location.href = "ai.html";
+              }
+      
+    
 
   </script>
 
