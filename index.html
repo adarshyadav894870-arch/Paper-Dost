@@ -760,3 +760,28 @@ loadPapers();
 
 </body>
                        </html>
+                       <style>
+.hero-logo {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const hero = document.querySelector(".hero");
+
+  if (hero) {
+    const logo = document.createElement("img");
+    logo.src = "logo.png";
+    logo.alt = "PaperDost Logo";
+    logo.className = "hero-logo";
+
+    hero.insertBefore(logo, hero.firstChild);
+  }
+});
+</script>
